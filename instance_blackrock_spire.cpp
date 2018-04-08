@@ -31,6 +31,44 @@ enum EventIds
     EVENT_UROK_DOOMHOWL_SPAWN_IN           = 8
 };
 
+struct AddSpawns
+{
+	uint32 WaveNumber;
+	uint32 GUID;
+	uint32 killed; //boolean
+};
+
+AddSpawns RendSpawns[] = 
+{
+	{ 1,0,0 }, //100
+	{ 1,0,0 },
+	{ 1,0,0 },
+	{ 1,0,0 },
+	{ 2,0,0 }, //104
+	{ 2,0,0 },
+	{ 2,0,0 },
+	{ 3,0,0 }, //107
+	{ 3,0,0 },
+	{ 3,0,0 },
+	{ 3,0,0 },
+	{ 4,0,0 }, //111
+	{ 4,0,0 },
+	{ 4,0,0 },
+	{ 4,0,0 },
+	{ 5,0,0 }, //115
+	{ 5,0,0 },
+	{ 5,0,0 },
+	{ 5,0,0 },
+	{ 5,0,0 },
+	{ 6,0,0 }, //120
+	{ 6,0,0 },
+	{ 6,0,0 },
+	{ 6,0,0 },
+	{ 6,0,0 }
+};
+
+
+
 class instance_blackrock_spire : public InstanceMapScript
 {
 public:
@@ -63,6 +101,7 @@ public:
             go_portcullis_active      = 0;
             go_portcullis_tobossrooms = 0;
             go_urok_pile              = 0;
+			Wave1Index				  = 0;
             memset(go_roomrunes, 0, sizeof(go_roomrunes));
             memset(go_emberseerrunes, 0, sizeof(go_emberseerrunes));
         }
@@ -79,6 +118,18 @@ public:
                 break;
             }
         }
+
+		void OnUnitDeath(Unit* unit)
+		{
+			//Check if the death was one of the adds.... This uses a lot of computing power and should be changed
+			for (int i = 0; i < 25; i++)
+			{
+				if (unit->GetGUID() == RendSpawns[i].GUID)
+				{
+					RendSpawns[i].killed = 1; //Unit was killed so flag it
+				}
+			}
+		}
 
         void OnCreatureCreate(Creature* creature)
         {
@@ -135,8 +186,28 @@ public:
                     if (GetBossState(DATA_GYTH) == DONE)
                         creature->DisappearAndDie();
                     break;
+
+				//Add the wave1 add GUIDs to an array so we can move them later
+				case 10442: //NPC_CHROMATIC_WHELP
+					if (Wave1Index < 4)
+					{
+						RendSpawns[Wave1Index].GUID = creature->GetGUID();
+						Wave1Index += 1;
+					}
+
+					
+					break;
+				case 10447: //NPC_CHROMATIC_DRAGONSPAWN
+					if (Wave1Index < 4)
+					{
+						RendSpawns[Wave1Index].GUID = creature->GetGUID();
+						Wave1Index += 1;
+					}
+					
+					break;
              }
          }
+
 
         void OnGameObjectCreate(GameObject* go)
         {
@@ -387,8 +458,16 @@ public:
                 case GO_PORTCULLIS_TOBOSSROOMS:
                     return go_portcullis_tobossrooms;
                 default:
+
+					//Add Helper - Everything is stored in RendSpawns and is accessed by using getData from 100 to 125
+					if (type >= 100 && type < 125) {
+						// Rend Event Wave 1 Add Helpers (return GUID of wave1)
+						return RendSpawns[(100 - type)].GUID;
+
+					}
                     break;
             }
+
             return 0;
         }
 
@@ -580,6 +659,7 @@ public:
             uint64 go_portcullis_active;
             uint64 go_portcullis_tobossrooms;
             uint64 go_urok_pile;
+			uint64 Wave1Index;
     };
 
     InstanceScript* GetInstanceScript(InstanceMap* map) const
