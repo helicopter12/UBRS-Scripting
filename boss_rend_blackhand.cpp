@@ -9,8 +9,6 @@
 #include "Player.h"
 #include "blackrock_spire.h"
 
-#define rendDoorGUID 87845
-
 enum Spells
 {
     SPELL_WHIRLWIND                 = 13736, // sniffed
@@ -55,7 +53,7 @@ enum Misc
     REND_PATH_2                     = 1379681,
 };
 
-
+/*
 struct Wave
 {
     uint32 entry;
@@ -63,50 +61,53 @@ struct Wave
     float  y_pos;
     float  z_pos;
     float  o_pos;
-	Creature* summ;
 };
 
 static Wave Wave2[]= // 22 sec
 {
-    { 10447, 209.8637f, -428.2729f, 110.9877f, 0.6632251f, new Creature },
-    { 10442, 209.3122f, -430.8724f, 110.9814f, 2.9147f, new Creature    },
-    { 10442, 211.3309f, -425.9111f, 111.0006f, 1.727876f, new Creature }
+    { 10447, 209.8637f, -428.2729f, 110.9877f, 0.6632251f },
+    { 10442, 209.3122f, -430.8724f, 110.9814f, 2.9147f    },
+    { 10442, 211.3309f, -425.9111f, 111.0006f, 1.727876f  }
 };
 
 static Wave Wave3[]= // 60 sec
 {
-    { 10742, 208.6493f, -424.5787f, 110.9872f, 5.8294f, new Creature },
-    { 10447, 203.9482f, -428.9446f, 110.982f,  4.677482f, new Creature },
-    { 10442, 203.3441f, -426.8668f, 110.9772f, 4.712389f, new Creature },
-    { 10442, 206.3079f, -424.7509f, 110.9943f, 4.08407f, new Creature }
+    { 10742, 208.6493f, -424.5787f, 110.9872f, 5.8294f    },
+    { 10447, 203.9482f, -428.9446f, 110.982f,  4.677482f  },
+    { 10442, 203.3441f, -426.8668f, 110.9772f, 4.712389f  },
+    { 10442, 206.3079f, -424.7509f, 110.9943f, 4.08407f   }
 };
 
 static Wave Wave4[]= // 49 sec
 {
-    { 10742, 212.3541f, -412.6826f, 111.0352f, 5.88176f, new Creature },
-    { 10447, 212.5754f, -410.2841f, 111.0296f, 2.740167f, new Creature },
-    { 10442, 212.3449f, -414.8659f, 111.0348f, 2.356194f, new Creature },
-    { 10442, 210.6568f, -412.1552f, 111.0124f, 0.9773844f, new Creature }
+    { 10742, 212.3541f, -412.6826f, 111.0352f, 5.88176f   },
+    { 10447, 212.5754f, -410.2841f, 111.0296f, 2.740167f  },
+    { 10442, 212.3449f, -414.8659f, 111.0348f, 2.356194f  },
+    { 10442, 210.6568f, -412.1552f, 111.0124f, 0.9773844f }
 };
 
 static Wave Wave5[]= // 60 sec
 {
-    { 10742, 210.2188f, -410.6686f, 111.0211f, 5.8294f, new Creature },
-    { 10447, 209.4078f, -414.13f,   111.0264f, 4.677482f, new Creature },
-    { 10442, 208.0858f, -409.3145f, 111.0118f, 4.642576f, new Creature },
-    { 10442, 207.9811f, -413.0728f, 111.0098f, 5.288348f, new Creature },
-    { 10442, 208.0854f, -412.1505f, 111.0057f, 4.08407f, new Creature }
+    { 10742, 210.2188f, -410.6686f, 111.0211f, 5.8294f    },
+    { 10447, 209.4078f, -414.13f,   111.0264f, 4.677482f  },
+    { 10442, 208.0858f, -409.3145f, 111.0118f, 4.642576f  },
+    { 10442, 207.9811f, -413.0728f, 111.0098f, 5.288348f  },
+    { 10442, 208.0854f, -412.1505f, 111.0057f, 4.08407f   }
 };
 
 static Wave Wave6[]= // 27 sec
 {
-    { 10742, 213.9138f, -426.512f,  111.0013f, 3.316126f, new Creature },
-    { 10447, 213.7121f, -429.8102f, 110.9888f, 1.413717f, new Creature },
-    { 10447, 213.7157f, -424.4268f, 111.009f,  3.001966f, new Creature },
-    { 10442, 210.8935f, -423.913f,  111.0125f, 5.969026f, new Creature },
-    { 10442, 212.2642f, -430.7648f, 110.9807f, 5.934119f, new Creature }
+    { 10742, 213.9138f, -426.512f,  111.0013f, 3.316126f  },
+    { 10447, 213.7121f, -429.8102f, 110.9888f, 1.413717f  },
+    { 10447, 213.7157f, -424.4268f, 111.009f,  3.001966f  },
+    { 10442, 210.8935f, -423.913f,  111.0125f, 5.969026f  },
+    { 10442, 212.2642f, -430.7648f, 110.9807f, 5.934119f  }
 };
+*/
 
+/*Position const GythLoc =      { 211.762f,  -397.5885f, 111.1817f,  4.747295f   };
+Position const Teleport1Loc = { 194.2993f, -474.0814f, 121.4505f, -0.01225555f };
+Position const Teleport2Loc = { 216.485f,  -434.93f,   110.888f,  -0.01225555f };*/
 
 enum Events
 {
@@ -142,7 +143,6 @@ enum Events
     EVENT_WHIRLWIND                 = 30,
     EVENT_CLEAVE                    = 31,
     EVENT_MORTAL_STRIKE             = 32,
-	EVENT_WAIT_FOR_DEATH_OF_ADDS1   = 33,
 };
 
 class boss_rend_blackhand : public CreatureScript
@@ -160,10 +160,6 @@ public:
             gythEvent = false;
             victorGUID = 0;
             portcullisGUID = 0;
-
-			//Open the entrance gate
-			if (GameObject* portcullis = me->GetMap()->GetGameObject(rendDoorGUID))
-				portcullis->UseDoorOrButton();
         }
 
         void EnterCombat(Unit* /*who*/)
@@ -179,10 +175,6 @@ public:
             _JustDied();
             if (Creature* victor = me->FindNearestCreature(NPC_LORD_VICTOR_NEFARIUS, 75.0f, true))
                 victor->AI()->SetData(1, 2);
-
-			//Open the entrance gate
-			if (GameObject* portcullis = me->GetMap()->GetGameObject(rendDoorGUID))
-				portcullis->UseDoorOrButton();
         }
 
         void SetData(uint32 type, uint32 data)
@@ -211,6 +203,9 @@ public:
             {
                 switch (id)
                 {
+                    case 5:
+                        events.ScheduleEvent(EVENT_TELEPORT_1, 2000);
+                        break;
                     case 11:
                         if (Creature* gyth = me->FindNearestCreature(NPC_GYTH, 10.0f, true))
                             gyth->AI()->SetData(1, 1);
@@ -234,11 +229,6 @@ public:
                             if (Creature* victor = ObjectAccessor::GetCreature(*me, victorGUID))
                                 victor->AI()->Talk(SAY_NEFARIUS_0);
                             events.ScheduleEvent(EVENT_START_2, 4000);
-
-							//Close the entrance gate
-							if (GameObject* portcullis = me->GetMap()->GetGameObject(rendDoorGUID))
-								portcullis->UseDoorOrButton();
-
                             break;
                         case EVENT_START_2:
                             events.ScheduleEvent(EVENT_TURN_TO_PLAYER, 0);
@@ -251,19 +241,8 @@ public:
                                 victor->AI()->Talk(SAY_NEFARIUS_1);
                             events.ScheduleEvent(EVENT_WAVE_1, 2000);
                             events.ScheduleEvent(EVENT_TURN_TO_REND, 4000);
-							events.ScheduleEvent(EVENT_WAIT_FOR_DEATH_OF_ADDS1, 5000);	
+                            events.ScheduleEvent(EVENT_WAVES_TEXT_1, 20000);
                             break;
-
-						case EVENT_WAIT_FOR_DEATH_OF_ADDS1:
-							//Get data from first adds and check if they all are dead
-							if (instance->GetData64(100) == 1 && instance->GetData64(101) == 1 && instance->GetData64(102) == 1 && instance->GetData64(103) == 1)
-							{
-								events.ScheduleEvent(EVENT_WAVES_TEXT_1, 20000);			//Adds were killed... Move on
-							}
-							else {
-								events.ScheduleEvent(EVENT_WAIT_FOR_DEATH_OF_ADDS1, 3000);	//Adds werent killed... Wait and check for an update every 3 secs
-							}
-							break;
                         case EVENT_TURN_TO_REND:
                             if (Creature* victor = ObjectAccessor::GetCreature(*me, victorGUID))
                             {
@@ -360,133 +339,50 @@ public:
                             break;
                         case EVENT_PATH_REND:
                             me->GetMotionMaster()->MovePath(REND_PATH_1, false);
-							events.ScheduleEvent(EVENT_TELEPORT_2, 5000); //Call TP2 event after 5sec - Heli
                             break;
-
-							//NOT USED ANYMORE
                         case EVENT_TELEPORT_1:
                             me->NearTeleportTo(194.2993f, -474.0814f, 121.4505f, -0.01225555f);
                             events.ScheduleEvent(EVENT_TELEPORT_2, 50000);
                             break;
-
                         case EVENT_TELEPORT_2:
                             me->NearTeleportTo(216.485f, -434.93f, 110.888f, -0.01225555f);
                             me->SummonCreature(NPC_GYTH, 211.762f, -397.5885f, 111.1817f, 4.747295f);
                             break;
-
                         case EVENT_WAVE_1:
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))
                                 portcullis->UseDoorOrButton();
-
-                            // move wave 1 
-							for (int i = 0; i < 4; i++) {
-								if (Unit* target = me->SelectNearestPlayer(500.0f))
-								{
-									if (Creature* add = ObjectAccessor::GetCreature(*me, instance->GetData64(i+100)))
-										add->AI()->AttackStart(target);
-								}
-							}
-
+                            // move wave
                             break;
-
                         case EVENT_WAVE_2:
-
-							array_length = std::end(Wave2) - std::begin(Wave2);
-							for (int i = 0; i < array_length; i++) {
-								// spawn wave
-								Wave2[i].summ =  me->SummonCreature(Wave2[i].entry, Wave2[i].x_pos, Wave2[i].y_pos, Wave2[i].z_pos, Wave2[i].o_pos);
-								instance->SetData(104+i, Wave2[i].summ->GetGUID());
-							}
-
+                            // spawn wave
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))
                                 portcullis->UseDoorOrButton();
-
-
-							for (int i = 0; i < array_length; i++) {
-								// move wave
-								
-								if (Unit* target = me->SelectNearestPlayer(500.0f))
-									Wave2[i].summ->AI()->AttackStart(target);
-							}
+                            // move wave
                             break;
-
                         case EVENT_WAVE_3:
-
-							array_length = std::end(Wave3) - std::begin(Wave3);
-							for (int i = 0; i < array_length; i++) {
-								// spawn wave
-								Wave3[i].summ = me->SummonCreature(Wave3[i].entry, Wave3[i].x_pos, Wave3[i].y_pos, Wave3[i].z_pos, Wave3[i].o_pos);
-								instance->SetData(107 + i, Wave3[i].summ->GetGUID());
-							}
-
+                            // spawn wave
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))
                                 portcullis->UseDoorOrButton();
-                           
-							for (int i = 0; i < array_length; i++) {
-								// move wave
-								if (Unit* target = me->SelectNearestPlayer(500.0f))
-									Wave3[i].summ->AI()->AttackStart(target);
-							}
+                            // move wave
                             break;
-
                         case EVENT_WAVE_4:
-
-							array_length = std::end(Wave4) - std::begin(Wave4);
-							for (int i = 0; i < array_length; i++) {
-								// spawn wave
-								Wave4[i].summ =  me->SummonCreature(Wave4[i].entry, Wave4[i].x_pos, Wave4[i].y_pos, Wave4[i].z_pos, Wave4[i].o_pos);
-								instance->SetData(111 + i, Wave4[i].summ->GetGUID());
-							}
-                            
+                            // spawn wave
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))
                                 portcullis->UseDoorOrButton();
-                            
-							for (int i = 0; i < array_length; i++) {
-								// move wave
-								if (Unit* target = me->SelectNearestPlayer(500.0f))
-									Wave4[i].summ->AI()->AttackStart(target);
-							}
+                            // move wave
                             break;
-
                         case EVENT_WAVE_5:
-                            
-							array_length = std::end(Wave5) - std::begin(Wave5);
-							for (int i = 0; i < array_length; i++) {
-								// spawn wave
-								Wave5[i].summ =  me->SummonCreature(Wave5[i].entry, Wave5[i].x_pos, Wave5[i].y_pos, Wave5[i].z_pos, Wave5[i].o_pos);
-								instance->SetData(115 + i, Wave5[i].summ->GetGUID());
-							}
-
+                            // spawn wave
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))
                                 portcullis->UseDoorOrButton();
-                           
-							for (int i = 0; i < array_length; i++) {
-								// move wave
-								if (Unit* target = me->SelectNearestPlayer(500.0f))
-									Wave5[i].summ->AI()->AttackStart(target);
-							}
+                            // move wave
                             break;
-
                         case EVENT_WAVE_6:
-
-							array_length = std::end(Wave6) - std::begin(Wave6);
-							for (int i = 0; i < array_length; i++) {
-								// spawn wave
-								Wave6[i].summ = me->SummonCreature(Wave6[i].entry, Wave6[i].x_pos, Wave6[i].y_pos, Wave6[i].z_pos, Wave6[i].o_pos);
-								instance->SetData(120 + i, Wave3[i].summ->GetGUID());
-							}
-
+                            // spawn wave
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))
                                 portcullis->UseDoorOrButton();
-
-
-							for (int i = 0; i < array_length; i++) {
-								// move wave
-								if (Unit* target = me->SelectNearestPlayer(500.0f))
-									Wave6[i].summ->AI()->AttackStart(target);
-							}
+                            // move wave
                             break;
-
                         default:
                             break;
                     }
@@ -526,7 +422,6 @@ public:
             bool   gythEvent;
             uint64 victorGUID;
             uint64 portcullisGUID;
-			int array_length = 0;
     };
 
     CreatureAI* GetAI(Creature* creature) const
