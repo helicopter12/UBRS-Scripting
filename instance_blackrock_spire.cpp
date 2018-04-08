@@ -122,11 +122,15 @@ public:
 		void OnUnitDeath(Unit* unit)
 		{
 			//Check if the death was one of the adds.... This uses a lot of computing power and should be changed
-			for (int i = 0; i < 25; i++)
-			{
-				if (unit->GetGUID() == RendSpawns[i].GUID)
+			uint32 entryID = unit->GetEntry();
+			if (entryID == 10442 || entryID == 10447 || entryID == 10742) {
+				uint32 GUID = unit->GetGUID();
+				for (int i = 0; i < 25; i++)
 				{
-					RendSpawns[i].killed = 1; //Unit was killed so flag it
+					if (GUID == RendSpawns[i].GUID)
+					{
+						RendSpawns[i].killed = 1; //Unit was killed so flag it
+					}
 				}
 			}
 		}
