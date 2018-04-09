@@ -466,7 +466,7 @@ public:
 					//Add Helper - Everything is stored in RendSpawns and is accessed by using getData from 100 to 125
 					if (type >= 100 && type < 125) {
 						// Rend Event Wave 1 Add Helpers (return GUID of wave1)
-						return RendSpawns[(100 - type)].GUID;
+						return RendSpawns[(type - 100)].GUID;
 
 					}
                     break;
