@@ -251,19 +251,8 @@ public:
                                 victor->AI()->Talk(SAY_NEFARIUS_1);
                             events.ScheduleEvent(EVENT_WAVE_1, 2000);
                             events.ScheduleEvent(EVENT_TURN_TO_REND, 4000);
-							events.ScheduleEvent(EVENT_WAIT_FOR_DEATH_OF_ADDS1, 5000);	
+							events.ScheduleEvent(EVENT_WAVES_TEXT_1, 20000);		
                             break;
-
-						case EVENT_WAIT_FOR_DEATH_OF_ADDS1:
-							//Get data from first adds and check if they all are dead
-							if (instance->GetData64(100) == 1 && instance->GetData64(101) == 1 && instance->GetData64(102) == 1 && instance->GetData64(103) == 1)
-							{
-								events.ScheduleEvent(EVENT_WAVES_TEXT_1, 20000);			//Adds were killed... Move on
-							}
-							else {
-								events.ScheduleEvent(EVENT_WAIT_FOR_DEATH_OF_ADDS1, 3000);	//Adds werent killed... Wait and check for an update every 3 secs
-							}
-							break;
                         case EVENT_TURN_TO_REND:
                             if (Creature* victor = ObjectAccessor::GetCreature(*me, victorGUID))
                             {
@@ -395,7 +384,6 @@ public:
 							for (int i = 0; i < array_length; i++) {
 								// spawn wave
 								Wave2[i].summ =  me->SummonCreature(Wave2[i].entry, Wave2[i].x_pos, Wave2[i].y_pos, Wave2[i].z_pos, Wave2[i].o_pos);
-								instance->SetData(104+i, Wave2[i].summ->GetGUID());
 							}
 
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))
@@ -416,7 +404,6 @@ public:
 							for (int i = 0; i < array_length; i++) {
 								// spawn wave
 								Wave3[i].summ = me->SummonCreature(Wave3[i].entry, Wave3[i].x_pos, Wave3[i].y_pos, Wave3[i].z_pos, Wave3[i].o_pos);
-								instance->SetData(107 + i, Wave3[i].summ->GetGUID());
 							}
 
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))
@@ -435,7 +422,6 @@ public:
 							for (int i = 0; i < array_length; i++) {
 								// spawn wave
 								Wave4[i].summ =  me->SummonCreature(Wave4[i].entry, Wave4[i].x_pos, Wave4[i].y_pos, Wave4[i].z_pos, Wave4[i].o_pos);
-								instance->SetData(111 + i, Wave4[i].summ->GetGUID());
 							}
                             
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))
@@ -454,7 +440,6 @@ public:
 							for (int i = 0; i < array_length; i++) {
 								// spawn wave
 								Wave5[i].summ =  me->SummonCreature(Wave5[i].entry, Wave5[i].x_pos, Wave5[i].y_pos, Wave5[i].z_pos, Wave5[i].o_pos);
-								instance->SetData(115 + i, Wave5[i].summ->GetGUID());
 							}
 
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))
@@ -473,7 +458,6 @@ public:
 							for (int i = 0; i < array_length; i++) {
 								// spawn wave
 								Wave6[i].summ = me->SummonCreature(Wave6[i].entry, Wave6[i].x_pos, Wave6[i].y_pos, Wave6[i].z_pos, Wave6[i].o_pos);
-								instance->SetData(120 + i, Wave3[i].summ->GetGUID());
 							}
 
                             if (GameObject* portcullis = me->GetMap()->GetGameObject(portcullisGUID))

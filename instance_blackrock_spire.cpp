@@ -119,17 +119,6 @@ public:
             }
         }
 
-		void OnUnitDeath(Unit* unit)
-		{
-			//Check if the death was one of the adds.... This uses a lot of computing power and should be changed
-			for (int i = 0; i < 25; i++)
-			{
-				if (unit->GetGUID() == RendSpawns[i].GUID)
-				{
-					RendSpawns[i].killed = 1; //Unit was killed so flag it
-				}
-			}
-		}
 
         void OnCreatureCreate(Creature* creature)
         {
@@ -389,6 +378,12 @@ public:
 
         uint64 GetData64(uint32 type) const
         {
+			//Add Helper - Everything is stored in RendSpawns and is accessed by using getData from 100 to 125
+			if (type >= 100 && type < 125) {
+				// Rend Event Wave 1 Add Helpers (return GUID of wave1)
+				return RendSpawns[(type - 100)].GUID;
+			}
+
             switch (type)
             {
                 case DATA_HIGHLORD_OMOKK:
@@ -458,16 +453,8 @@ public:
                 case GO_PORTCULLIS_TOBOSSROOMS:
                     return go_portcullis_tobossrooms;
                 default:
-
-					//Add Helper - Everything is stored in RendSpawns and is accessed by using getData from 100 to 125
-					if (type >= 100 && type < 125) {
-						// Rend Event Wave 1 Add Helpers (return GUID of wave1)
-						return RendSpawns[(100 - type)].GUID;
-
-					}
                     break;
             }
-
             return 0;
         }
 
